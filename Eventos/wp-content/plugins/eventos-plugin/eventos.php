@@ -84,8 +84,9 @@ if(function_exists('acf_add_local_field_group')){
     ));
 }
 
-/*-- Shortcode: [eventos_futuros threshold="3"] --*/ 
-function eventos_futuros_shortcode($atts) {
+/*-- Shortcode: [eventos_futuros threshold="3"] --*/
+function eventos_futuros_shortcode($atts)
+{
     $atts = shortcode_atts( array(
         'threshold'=> -1,  // Sem limite
         ), 
@@ -112,3 +113,34 @@ function eventos_futuros_shortcode($atts) {
     /* Output */
     ob_start();
 ?>
+
+<div class="container">
+    <div class="row">
+        <?php while($eventos->have_posts() ) :$eventos->the_post();?>
+        <div class="col-md-4 md-4">
+            <div class="card h-100">
+                <?php if(has_post_thumbnail()) : ?>
+                <img src="<?php the_post_thumbnail_url('mediaum'); ?>"
+                     class="card-img-top" alt="<?php the_title_attribute();?>" />
+                <?php endif; ?>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <?php the_title(); ?>
+                    </h5>
+
+                    <p class="card-text">
+                                <strong>Date:</strong> <?php echo esc_html( get_field( 'event_date' ) ); ?><br>
+                                <strong>Location:</strong> <?php echo esc_html( get_field( 'location' ) ); ?><br>
+                                <strong>Organizer:</strong> <?php echo esc_html( get_field( 'organizer' ) ); ?>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php endwhile; wp_reset_postdata(); ?>
+    </div>
+</div>
+<?php return ob_get_clean();
+}
+add_shortcode('eventos_futuros', 'eventos_futuros_shortcode');
+    
