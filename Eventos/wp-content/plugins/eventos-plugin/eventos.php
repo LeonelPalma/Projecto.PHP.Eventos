@@ -120,7 +120,7 @@ function eventos_futuros_shortcode($atts)
         <div class="col-md-4 md-4">
             <div class="card h-100">
                 <?php if(has_post_thumbnail()) : ?>
-                <img src="<?php the_post_thumbnail_url('mediaum'); ?>"
+                <img src="<?php the_post_thumbnail_url('medium'); ?>"
                      class="card-img-top" alt="<?php the_title_attribute();?>" />
                 <?php endif; ?>
                 <div class="card-body">
@@ -129,9 +129,9 @@ function eventos_futuros_shortcode($atts)
                     </h5>
 
                     <p class="card-text">
-                                <strong>Date:</strong> <?php echo esc_html( get_field( 'event_date' ) ); ?><br>
-                                <strong>Location:</strong> <?php echo esc_html( get_field( 'location' ) ); ?><br>
-                                <strong>Organizer:</strong> <?php echo esc_html( get_field( 'organizer' ) ); ?>
+                                <strong>Data:</strong> <?php echo esc_html( get_field( 'data_evento' ) ); ?><br>
+                                <strong>Local:</strong> <?php echo esc_html( get_field( 'local_evento' ) ); ?><br>
+                                <strong>Organizador:</strong> <?php echo esc_html( get_field( 'organizador_evento' ) ); ?>
 
                     </p>
                 </div>
